@@ -1,15 +1,7 @@
+### Zulfidin (Bobojon) Khodzhaev - 2023 ###
+
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[ ]:
-
-
-# fairmetric is correct
-# 
-
-
-# In[1]:
-
 
 import numpy as np
 import pickle as pkl
@@ -177,99 +169,5 @@ for pkl_file in pkl_file_to_sens_idx.keys():
         print(f'Robustness Score Mean (Instability Mean): {np.average(robustness_score_list)}, STD: {np.std(robustness_score_list)}')
         print(f'Parity Mean (Delta PS): {np.average(parity_list)}, STD: {np.std(parity_list)}')
         print(f'Equality Mean (Delta EO): {np.average(equality_list)}, STD: {np.std(equality_list)}')
-        print("& {:.2f} ({:.2f}) & {:.2f} ({:.2f}) & {:.2f} ({:.2f}) & {:.2f} ({:.2f}) & {:.2f} ({:.2f}) & {:.2f} ({:.2f}) \\\\".format(
-            np.average(auroc_list), np.std(auroc_list), np.average(f1_score_list), np.std(f1_score_list),
-            np.average(counterfactual_fairness_list), np.std(counterfactual_fairness_list), np.average(robustness_score_list), np.std(robustness_score_list),
-            np.average(parity_list), np.std(parity_list), np.average(equality_list), np.std(equality_list)))
         print('------------------------------------------')
         print('------------------------------------------')
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[2]:
-
-
-import pickle as pkl
-
-# Function definitions (from your code)
-# ...
-
-# Test the functionality
-def test_script():
-    # Load a sample dataset
-    pkl_file = 'german_dset.pkl'  # change this to the path of your dataset
-    data = pkl.load(open(pkl_file, 'rb'))
-    print(f"Loaded dataset: {pkl_file}")
-
-    # Check the sensitivity index
-    sens_idx = pkl_file_to_sens_idx[pkl_file]
-    print(f"Sensitivity Index for {pkl_file}: {sens_idx}")
-
-    # Check if the sensitive attribute is correctly indexed
-    print(f"Sample sensitive attribute values: {data['X'][:5, sens_idx]}")
-
-    # Run a small test with your model
-    # For simplicity, using a small subset of data
-    small_data = {'X': data['X'][:100], 'Y': data['Y'][:100]}
-    small_data['idx_train'] = range(80)  # first 80% as training data
-    small_data['idx_test'] = range(80, 100)  # remaining as test data
-
-    # Assuming your main function is mlp_main or logistic_regression_main
-    results = mlp_main(pkl_file, 'PCA', 42)  # or logistic_regression_main
-
-    # Display the results
-    print("Results from the test run:")
-    print(f"AUC-ROC: {results[0]}, F1 Score: {results[1]}")
-    print(f"Counterfactual Fairness: {results[2]}, Robustness Score: {results[3]}")
-    print(f"Parity: {results[4]}, Equality: {results[5]}")
-
-# Run the test script
-test_script()
-
-
-# In[ ]:
-
-
-
-
